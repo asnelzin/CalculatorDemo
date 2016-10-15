@@ -70,7 +70,7 @@ class CalculatorHelper {
     
     private var operations: Dictionary<String,Operation> = [
         "±" : Operation.UnaryOperation({ -$0 }, { "-(" + $0 + ")"}),
-        "×" : Operation.BinaryOperation(*, { $0 + " × " + $1 }, 1),
+        "✕" : Operation.BinaryOperation(*, { $0 + " × " + $1 }, 1),
         "÷" : Operation.BinaryOperation(/, { $0 + " ÷ " + $1 }, 1),
         "+" : Operation.BinaryOperation(+, { $0 + " + " + $1 }, 0),
         "-" : Operation.BinaryOperation(-, { $0 + " - " + $1 }, 0),

@@ -14,7 +14,27 @@ class CalculatorViewController: UIViewController {
 
     @IBOutlet private weak var display: UILabel!
 
-    @IBOutlet private weak var history: UILabel!
+    private var displayValue: Double? {
+        get {
+            if let text = display.text, let value = NumberFormatter().number(from: text)?.doubleValue {
+                return value
+            }
+            return nil
+        }
+        set {
+            if let value = newValue {
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                formatter.maximumFractionDigits = Constants.DecimalDigits
+                display.text = formatter.string(from: NSNumber(value: value))
+            } else {
+                display.text = "0"
+                isTypingNumber = false
+            }
+        }
+    }
+
+    private var calculatorHelper = CalculatorHelper(decimalDigits: Constants.DecimalDigits)
 
     private var isTypingFloatingNumber = false
     private var isTypingNumber = false {
@@ -44,62 +64,24 @@ class CalculatorViewController: UIViewController {
         }
 
         if isTypingNumber {
-            let textCurrentlyInDisplay = display.text!
-            display.text = textCurrentlyInDisplay + digit
+            display.text = display.text! + digit
         } else {
             display.text = digit
             isTypingNumber = true
         }
     }
 
-    private var displayValue: Double? {
-        get {
-            if let text = display.text, value = NSNumberFormatter().numberFromString(text)?.doubleValue {
-                return value
-            }
-            return nil
-        }
-        set {
-            if let value = newValue {
-                let formatter = NSNumberFormatter()
-                formatter.numberStyle = .DecimalStyle
-                formatter.maximumFractionDigits = Constants.DecimalDigits
-                display.text = formatter.stringFromNumber(value)
-                history.text = calculatorHelper.description + (calculatorHelper.isPartialResult ? " …" : " =")
-            } else {
-                display.text = "0"
-                history.text = " "
-                isTypingNumber = false
-            }
-        }
-    }
-
-    private var calculatorHelper = CalculatorHelper(decimalDigits: Constants.DecimalDigits)
-
     @IBAction private func performOperation(sender: UIButton) {
         if isTypingNumber {
-            calculatorHelper.setOperand(displayValue!)
+            calculatorHelper.setOperand(operand: displayValue!)
             isTypingNumber = false
-        } else {
-            if let symbol = sender.currentTitle {
-                calculatorHelper.performOperation(symbol)
-            }
+        }
+
+        if let symbol = sender.currentTitle {
+            calculatorHelper.performOperation(symbol: symbol)
         }
 
         displayValue = calculatorHelper.result
-    }
-
-    @IBAction func backSpace(sender: UIButton) {
-        if isTypingNumber {
-            if var text = display.text {
-                text.remove(at: text.endIndex.predecessor())
-                if text.isEmpty {
-                    text = "0"
-                    isTypingNumber = false
-                }
-                display.text = text
-            }
-        }
     }
 
     @IBAction func clearEverything(sender: UIButton) {
