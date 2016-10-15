@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  CalculatorDemo
 //
-//  Created by Нельзин Александр on 19/09/16.
+//  Created by Alexander Nelzin on 19/09/16.
 //  Copyright © 2016 Alexander Nelzin. All rights reserved.
 //
 
