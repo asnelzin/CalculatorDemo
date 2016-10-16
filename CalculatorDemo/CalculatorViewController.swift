@@ -16,8 +16,14 @@ class CalculatorViewController: UIViewController {
 
     private var displayValue: Double? {
         get {
-            if let text = display.text, let value = NumberFormatter().number(from: text)?.doubleValue {
-                return value
+            if let text = display.text {
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                formatter.decimalSeparator = Constants.DecimalSeparator
+                formatter.maximumFractionDigits = Constants.DecimalDigits
+                if let value = formatter.number(from: text)?.doubleValue {
+                    return value
+                }
             }
             return nil
         }
@@ -25,6 +31,7 @@ class CalculatorViewController: UIViewController {
             if let value = newValue {
                 let formatter = NumberFormatter()
                 formatter.numberStyle = .decimal
+                formatter.decimalSeparator = Constants.DecimalSeparator
                 formatter.maximumFractionDigits = Constants.DecimalDigits
                 display.text = formatter.string(from: NSNumber(value: value))
             } else {
@@ -46,7 +53,7 @@ class CalculatorViewController: UIViewController {
     }
 
     private struct Constants {
-        static let DecimalSeparator = NumberFormatter().decimalSeparator!
+        static let DecimalSeparator = "."
         static let DecimalDigits = 6
     }
 
