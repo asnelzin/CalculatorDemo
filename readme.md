@@ -1,14 +1,14 @@
-# CalculatorDemo
-
+<p align="center">
+  <img src="https://github.com/asnelzin/CalculatorDemo/blob/master/icon.png" width="150px" alt="CalculatorDemo by Alexander Nelzin"/>
+</p> 
+# 
 > Yet another simple calculator app.
 
 ## Motivation
 
 This application was made during iOS-course in VK.com University.
 
-<p align="center">
-  <img src="https://github.com/asnelzin/CalculatorDemo/blob/master/icon.png" alt="CalculatorDemo by Alexander Nelzin"/>
-</p> 
+![](screen.png)
 
 ## TODO
 
