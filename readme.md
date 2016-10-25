@@ -21,4 +21,4 @@ This application was made during iOS-course in VK.com University.
 
 ## License
 
-MIT © [Alexander Nelzin](http://asnelzin.com)
+MIT © [Alexander Nelzin](http://asnelzin.ru)
