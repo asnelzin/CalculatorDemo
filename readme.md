@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://github.com/asnelzin/CalculatorDemo/blob/master/.github/media/icon.png" width="150px" alt="CalculatorDemo by Alexander Nelzin"/>
 </p> 
-
+# CalculatorDemo
 > Yet another simple calculator app.
 
 ## Motivation
